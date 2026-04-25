@@ -32,7 +32,7 @@ export default function NavTabs({ active, onChange }) {
             onClick={() => onChange(tab.id)}
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '13px',
+              fontSize: '16px',
               fontWeight: active === tab.id ? 600 : 400,
               padding: '16px 20px',
               border: 'none',

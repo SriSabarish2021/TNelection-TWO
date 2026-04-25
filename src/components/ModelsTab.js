@@ -40,7 +40,7 @@ export default function ModelsTab() {
         overflowX: 'auto',
       }}>
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+          fontFamily: 'var(--font-mono)', fontSize: '14px', color: 'var(--text3)',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px',
         }}>ALL MODELS — CV AUC AND TEST ACCURACY</div>
 
@@ -49,7 +49,7 @@ export default function ModelsTab() {
             <tr>
               {['Model', 'CV AUC', 'Test AUC', 'Test Acc', 'Status'].map(h => (
                 <th key={h} style={{
-                  fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase',
+                  fontFamily: 'var(--font-mono)', fontSize: '13px', textTransform: 'uppercase',
                   letterSpacing: '0.08em', color: 'var(--text3)', fontWeight: 400,
                   padding: '0 0 12px 0', textAlign: 'left',
                   borderBottom: '1px solid var(--border)',
@@ -67,7 +67,7 @@ export default function ModelsTab() {
               onMouseLeave={e => !m.best && (e.currentTarget.style.background = 'transparent')}
               >
                 <td style={{
-                  fontFamily: 'var(--font-body)', fontSize: '13px',
+                  fontFamily: 'var(--font-body)', fontSize: '14px',
                   fontWeight: m.best ? 600 : 400,
                   color: m.best ? 'var(--text1)' : 'var(--text2)',
                   padding: '14px 0', borderBottom: i < MODELS.length - 1 ? '1px solid var(--border)' : 'none',
@@ -94,7 +94,7 @@ export default function ModelsTab() {
         animation: 'fadeUp 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both',
       }}>
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+          fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px',
         }}>XGBOOST BEST HYPERPARAMETERS</div>
         <div style={{
@@ -107,7 +107,7 @@ export default function ModelsTab() {
               borderRadius: 'var(--radius-md)',
               padding: '16px 18px',
             }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text3)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 {p.label}
               </div>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--text1)' }}>
@@ -127,7 +127,7 @@ export default function ModelsTab() {
         animation: 'fadeUp 0.5s 0.15s cubic-bezier(0.22,1,0.36,1) both',
       }}>
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#F59E0B',
+          fontFamily: 'var(--font-mono)', fontSize: '12px', color: '#F59E0B',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px',
         }}>⚠ WHY AUC = 1.0 EVERYWHERE?</div>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: '14px', color: 'var(--text2)', lineHeight: 1.7 }}>

@@ -131,7 +131,7 @@ export default function FeaturesTab() {
           color: 'var(--text2)',
           lineHeight: 1.6,
         }}>
-          🔑 Welfare schemes and media coverage show the strongest correlation (r ≈ 0.84) with winning, followed by vote share and seat share.
+          Welfare schemes and media coverage show the strongest correlation (r ≈ 0.84) with winning, followed by vote share and seat share.
         </div>
       </div>
     </div>

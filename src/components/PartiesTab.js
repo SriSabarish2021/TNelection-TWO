@@ -50,7 +50,7 @@ export default function PartiesTab({ selectedParty, onSelect }) {
         animation: 'fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both',
       }}>
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+          fontFamily: 'var(--font-mono)', fontSize: '15px', color: 'var(--text3)',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px',
         }}>SELECT PARTY</div>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -65,7 +65,7 @@ export default function PartiesTab({ selectedParty, onSelect }) {
                 background: selectedParty === party.name ? `${party.color}20` : 'transparent',
                 color: selectedParty === party.name ? party.color : 'var(--text2)',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '12px',
+                fontSize: '14px',
                 fontWeight: 500,
                 cursor: 'pointer',
                 transition: 'all 0.2s',
@@ -110,7 +110,7 @@ export default function PartiesTab({ selectedParty, onSelect }) {
                   }}>★ PREDICTED WINNER</span>
                 )}
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '14px', color: 'var(--text3)' }}>
                 {p.full}
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function PartiesTab({ selectedParty, onSelect }) {
           animation: 'fadeUp 0.5s 0.15s cubic-bezier(0.22,1,0.36,1) both',
         }}>
           <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+            fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)',
             letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '20px',
           }}>FACTOR RADAR — {p.name}</div>
 
@@ -158,7 +158,7 @@ export default function PartiesTab({ selectedParty, onSelect }) {
                 <PolarGrid stroke="rgba(255,255,255,0.08)" />
                 <PolarAngleAxis
                   dataKey="subject"
-                  tick={{ fill: '#556070', fontSize: 10, fontFamily: 'DM Mono, monospace' }}
+                  tick={{ fill: '#556070', fontSize: 11, fontFamily: 'DM Mono, monospace' }}
                 />
                 <PolarRadiusAxis
                   angle={30}
@@ -186,11 +186,11 @@ export default function PartiesTab({ selectedParty, onSelect }) {
           </div>
 
           {/* Factor breakdown bars */}
-          <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
             {radarData.map(item => (
               <div key={item.subject}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text3)' }}>{item.subject}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)' }}>{item.subject}</span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: p.color }}>{item.value.toFixed(0)}</span>
                 </div>
                 <div style={{ height: '3px', background: 'var(--bg3)', borderRadius: '2px', overflow: 'hidden' }}>

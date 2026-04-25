@@ -30,7 +30,7 @@ export default function Ticker() {
         {repeated.map((item, i) => (
           <span key={i} style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: 500,
             letterSpacing: '0.12em',
             color: '#fff',

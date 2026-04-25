@@ -18,13 +18,13 @@ function StatCard({ label, value, sub, accent }) {
         position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
         background: accent || 'var(--accent)',
       }}/>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text3)', letterSpacing: '0.1em', marginBottom: '8px', textTransform: 'uppercase' }}>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)', letterSpacing: '0.1em', marginBottom: '8px', textTransform: 'uppercase' }}>
         {label}
       </div>
       <div style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: accent || 'var(--text1)', lineHeight: 1 }}>
         {value}
       </div>
-      {sub && <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)', marginTop: '6px' }}>{sub}</div>}
+      {sub && <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)', marginTop: '6px' }}>{sub}</div>}
     </div>
   );
 }
@@ -62,7 +62,7 @@ function AnimatedBar({ party, maxPct, delay, onSelect }) {
           <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: party.color }}>
             {party.pct.toFixed(1)}%
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text3)' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text3)' }}>
             ~{party.vote}% vote share
           </span>
         </div>
@@ -140,11 +140,116 @@ export default function PredictionsTab({ onPartySelect }) {
         <StatCard label="Parties Modelled" value="8" sub="Across major alliances" accent="#8B5CF6" />
         <StatCard label="Model Accuracy" value="100%" sub="Test set (synthetic data)" accent="#10B981" />
       </div>
-      {{if () {
-        
-      }}}
-      {window.width<=600?
+     
+      {window.innerWidth >= 600 ?(
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '32px', alignItems: 'start' }}>
+        {/* Party bars */}
+        <div style={{
+          background: 'var(--surface)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-xl)',
+          padding: '28px 32px',
+          animation: 'fadeUp 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both',
+        }}>
+          <div style={{
+            fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+            letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px',
+          }}>
+            2026 WIN PROBABILITY — ALL PARTIES
+          </div>
+          {PARTIES.map((p, i) => (
+            <AnimatedBar
+              key={p.name}
+              party={p}
+              maxPct={maxPct}
+              delay={200 + i * 80}
+              onSelect={() => onPartySelect(p.name)}
+            />
+          ))}
+          <div style={{
+            marginTop: '20px',
+            padding: '14px 16px',
+            background: 'rgba(232,75,58,0.06)',
+            border: '1px solid rgba(232,75,58,0.15)',
+            borderRadius: 'var(--radius-md)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '11px',
+            color: 'var(--text2)',
+            lineHeight: 1.6,
+          }}>
+            ℹ️ Click any party bar to view detailed analysis in the Party Detail tab.
+          </div>
+        </div>
+
+        {/* Donut + legend */}
+        <div style={{
+          display: 'flex', flexDirection: 'column', gap: '16px',
+          animation: 'fadeUp 0.5s 0.2s cubic-bezier(0.22,1,0.36,1) both',
+        }}>
+          <div style={{
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '24px',
+          }}>
+            <div style={{
+              fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
+              letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '20px',
+            }}>PROBABILITY DISTRIBUTION</div>
+
+            {/* Center label for donut */}
+            <div style={{ position: 'relative', height: '260px' }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={PARTIES}
+                    dataKey="pct"
+                    nameKey="name"
+                    cx="50%" cy="50%"
+                    innerRadius={75}
+                    outerRadius={115}
+                    paddingAngle={2}
+                    labelLine={false}
+                    label={renderCustomLabel}
+                  >
+                    {PARTIES.map(p => (
+                      <Cell key={p.name} fill={p.color} stroke="transparent" />
+                    ))}
+                  </Pie>
+                  <Tooltip content={<CustomTooltip />} />
+                </PieChart>
+              </ResponsiveContainer>
+              {/* Center text */}
+              <div style={{
+                position: 'absolute', top: '50%', left: '50%',
+                transform: 'translate(-50%, -50%)',
+                textAlign: 'center', pointerEvents: 'none',
+              }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#E84B3A', lineHeight: 1 }}>DMK</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text3)', marginTop: '4px' }}>LEADS</div>
+              </div>
+            </div>
+
+            {/* Legend */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '16px' }}>
+              {PARTIES.map(p => (
+                <div key={p.name} style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '2px', background: p.color }}/>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: 'var(--text2)' }}>{p.name}</span>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: p.color, fontWeight: 500 }}>
+                    {p.pct.toFixed(1)}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>):(
+      <div style={{ display: 'flex', flexDirection:'column', gap: '32px', alignItems: 'center' , justifyContent:'center'}}>
         {/* Party bars */}
         <div style={{
           background: 'var(--surface)',
@@ -250,49 +355,8 @@ export default function PredictionsTab({ onPartySelect }) {
             </div>
           </div>
         </div>
-      </div>:
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '32px', alignItems: 'start' }}>
-        {/* Party bars */}
-        <div style={{
-          background: 'var(--surface)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--radius-xl)',
-          padding: '28px 32px',
-          animation: 'fadeUp 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both',
-        }}>
-          <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text3)',
-            letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '24px',
-          }}>
-            2026 WIN PROBABILITY — ALL PARTIES
-          </div>
-          {PARTIES.map((p, i) => (
-            <AnimatedBar
-              key={p.name}
-              party={p}
-              maxPct={maxPct}
-              delay={200 + i * 80}
-              onSelect={() => onPartySelect(p.name)}
-            />
-          ))}
-          <div style={{
-            marginTop: '20px',
-            padding: '14px 16px',
-            background: 'rgba(232,75,58,0.06)',
-            border: '1px solid rgba(232,75,58,0.15)',
-            borderRadius: 'var(--radius-md)',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '11px',
-            color: 'var(--text2)',
-            lineHeight: 1.6,
-          }}>
-            ℹ️ Click any party bar to view detailed analysis in the Party Detail tab.
-          </div>
-        </div>
-
-        {/* Donut + legend */}
       
-      </div>}
+      </div>)}
     </div>
   );
 }

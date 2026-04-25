@@ -60,7 +60,7 @@ export default function Header() {
           }}>LIVE MODEL</div>
           <div style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '11px',
+            fontSize: '13px',
             color: 'var(--text3)',
             letterSpacing: '0.1em',
           }}>ENSEMBLE · XGBOOST · RANDOM FOREST · 1977–2021</div>
@@ -103,7 +103,7 @@ export default function Header() {
 
         <p style={{
           fontFamily: 'var(--font-body)',
-          fontSize: '15px',
+          fontSize: '17px',
           color: 'var(--text2)',
           fontWeight: 400,
           maxWidth: '560px',
